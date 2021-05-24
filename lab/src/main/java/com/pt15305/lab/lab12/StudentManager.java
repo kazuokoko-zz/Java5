@@ -13,18 +13,18 @@ public class StudentManager {
 
 	@GetMapping
 	public String get() {
-		return "Get Ma Van Hung PH12447";
+		return "GET Ma Van Hung PH12447";
 	}
 	@PostMapping
 	public String post() {
-		return "add Ma Van Hung PH12447";
+		return "ADD Ma Van Hung PH12447";
 	}
 	@DeleteMapping
 	public String delete() {
-		return "Delete Ma Van Hung PH12447";
+		return "DELETE Ma Van Hung PH12447";
 	}
 	@PutMapping
 	public String update() {
-		return "update Ma Van Hung PH12447";
+		return "UPDATE Ma Van Hung PH12447";
 	}
 }
