@@ -48,7 +48,7 @@ public class ProductRestController {
 		return _productSer.update(product);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 	public int deletebyId(@PathVariable Long id) {
 		return _productSer.deleteById(id);
 	}
