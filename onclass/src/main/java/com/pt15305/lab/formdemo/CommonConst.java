@@ -1,4 +1,4 @@
-package com.example.demo.utils;
+package com.pt15305.lab.formdemo;
 
 public class CommonConst {
 	

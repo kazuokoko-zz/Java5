@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.pt15305.lab.formdemo;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.model.Book;
-import com.example.demo.repository.IBookRepository;
-import com.example.demo.utils.CommonConst;
+
 
 @Component // Khai báo object này sẽ được khởi tạo theo kiểu... 
 public class BookService {

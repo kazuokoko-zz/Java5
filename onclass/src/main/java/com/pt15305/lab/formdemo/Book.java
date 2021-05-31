@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.pt15305.lab.formdemo;
 
 import java.math.BigDecimal;
 import java.util.Date;

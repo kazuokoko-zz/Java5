@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.pt15305.lab.formdemo;
 
 import java.util.List;
 
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.model.Book;
-import com.example.demo.model.BookType;
-import com.example.demo.service.BookService;
+
 
 @Controller
 @RequestMapping("/book")
