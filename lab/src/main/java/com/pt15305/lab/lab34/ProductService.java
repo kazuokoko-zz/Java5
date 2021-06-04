@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
 @Component
 public class ProductService {
@@ -14,6 +18,14 @@ public class ProductService {
 
 	public List<Product> getAll() {
 		return _productRepo.findAll();
+	}
+	public List<Product> findByGearType(GearTypes gearType) {
+		return _productRepo.findByGearType(gearType);
+	}
+
+	public Page<Product> getPages(int curPage, int pageSize) {
+		Pageable page = PageRequest.of(curPage, pageSize);
+		return _productRepo.findAll(page);
 	}
 
 	public Product getById(Long id) {
@@ -39,23 +51,32 @@ public class ProductService {
 		}
 	}
 
-	public int add(Product product) {
+	public Long save(Product product) {
 		try {
-			_productRepo.save(product);
-			return CommonConst.SUCCESS;
+			return _productRepo.save(product).getId();
+
 		} catch (Exception e) {
-			return CommonConst.ERROR;
+			return (long) CommonConst.ERROR;
 		}
 	}
 
-	public int update(Product product) {
-		try {
-			_productRepo.save(product);
-			return CommonConst.SUCCESS;
-		} catch (Exception e) {
-			return CommonConst.ERROR;
-		}
-	}
+//	public int add(Product product) {
+//		try {
+//			_productRepo.save(product);
+//			return CommonConst.SUCCESS;
+//		} catch (Exception e) {
+//			return CommonConst.ERROR;
+//		}
+//	}
+
+//	public int update(Product product) {
+//		try {
+//			_productRepo.save(product);
+//			return CommonConst.SUCCESS;
+//		} catch (Exception e) {
+//			return CommonConst.ERROR;
+//		}
+//	}
 
 	public int deleteById(Long id) {
 		try {
@@ -66,4 +87,9 @@ public class ProductService {
 		}
 	}
 
+	public void setPageStat(Model model, int curPage, int totalPage, boolean isPagging) {
+		model.addAttribute("isPagging", true);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("totalPage", totalPage);
+	}
 }

@@ -2,6 +2,8 @@ package com.pt15305.lab.lab34;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +22,5 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
 	@Query("select p from Product p where p.name like %:name%")
 	List<Product> findByNameLike(@Param("name") String name);
 
+	Page<Product> findAll(Pageable page);
 }

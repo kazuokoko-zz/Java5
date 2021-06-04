@@ -38,14 +38,14 @@ public class ProductRestController {
 	}
 
 	@PostMapping
-	public int add(@RequestBody Product product) {
-		return _productSer.add(product);
+	public Long add(@RequestBody Product product) {
+		return _productSer.save(product);
 	}
 
 	@PutMapping("/{id}")
-	public int update(@PathVariable Long id, @RequestBody Product product) {
+	public Long update(@PathVariable Long id, @RequestBody Product product) {
 		product.setId(id);
-		return _productSer.update(product);
+		return _productSer.save(product);
 	}
 
 	@DeleteMapping("/delete/{id}")

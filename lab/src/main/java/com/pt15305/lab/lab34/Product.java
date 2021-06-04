@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Entity
@@ -22,13 +24,14 @@ public class Product {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "code", length = 15, nullable = false, unique = true)
-	private String code;
+//	@Column(name = "code", length = 15, nullable = false, unique = true)
+//	private String code;
 
 	@Column(name = "name", nullable = false, columnDefinition = "nvarchar(150)")
 	private String name;
 
 	@Column(name = "created_date", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date created_date;
 
 	@Column(name = "geartype", nullable = false, length = 13)
