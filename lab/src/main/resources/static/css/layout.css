@@ -1,0 +1,12 @@
+.container {
+	width: 80%;
+	margin: 0 auto;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	min-height: 800px;
+	border-radius: 10px;
+}
+
+.form-group {
+	margin-top: 1rem !important;
+	margin-bottom: 1rem !important;
+}
