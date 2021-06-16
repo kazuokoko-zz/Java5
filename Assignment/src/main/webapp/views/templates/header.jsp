@@ -130,6 +130,9 @@
 								data-bs-toggle="dropdown" aria-expanded="true">${pageContext.request.userPrincipal.name}</a>
 							<ul class="dropdown-menu " aria-labelledby="dropdown05"
 								data-bs-popper="none">
+								<c:if test="${isAdmin }">
+									<li><a class="dropdown-item" href="/admin">Quản lý</a></li>
+								</c:if>
 								<li><a class="dropdown-item" href="/info">Thông tin</a></li>
 								<li><a class="dropdown-item" href="/logout">Đăng Xuất</a></li>
 							</ul>

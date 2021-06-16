@@ -25,7 +25,7 @@ public class OrderService {
 	ProductRepository _productRepo;
 
 	@Transactional
-	public Long newOrder(Orders orders) throws Exception {
+	public Orders newOrder(Orders orders) throws Exception {
 		try {
 
 			Long id = _odersRepo.save(orders).getId();
@@ -49,7 +49,7 @@ public class OrderService {
 				}
 			}
 
-			return id;
+			return orders;
 		} catch (Exception e) {
 			throw new Exception("Order thất bại");
 

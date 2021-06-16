@@ -29,4 +29,8 @@ public class AccountService {
 		}
 
 	}
+
+	public Account getById(Long id) {
+		return _accountRepo.getById(id);
+	}
 }

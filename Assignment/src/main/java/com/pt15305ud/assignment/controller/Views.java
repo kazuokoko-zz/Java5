@@ -140,10 +140,11 @@ public class Views {
 		});
 		orders.setOrderDetails(details);
 		orders.setUserId(_accountSer.findByUserName(principal.getName()).getId());
-		orders.setId(_orderSer.newOrder(orders));
+		orders = _orderSer.newOrder(orders);
 
 		CartUtils.removeCartInSession(req);
 		model.addAttribute("order", orders);
+		model.addAttribute("account", _accountSer.getById(orders.getUserId()));
 		return "buy";
 	}
 

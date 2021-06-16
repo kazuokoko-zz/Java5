@@ -124,7 +124,7 @@ input:focus {
 	<!-- NAV -->
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
 		<div class="container-fluid" style="width: 95%; margin: 0 auto">
-			<a class="navbar-brand" href="/admin">GEAR MA</a>
+			<a class="navbar-brand" href="/home">GEAR MA</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 				aria-controls="navbarCollapse" aria-expanded="false"
@@ -133,6 +133,8 @@ input:focus {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav me-auto mb-2 mb-md-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page"
+						href="/admin">Trang chủ</a></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="/admin/product">Sản phẩm</a></li>
 
