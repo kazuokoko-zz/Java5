@@ -22,20 +22,20 @@ public class OrderDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "orderId")
+	@Column(nullable = false)
 	private Long orderId;
 
-	@Column(name = "productId", nullable = false)
+	@Column(nullable = false)
 	private Long productId;
 
-	@Column(name = "productPrice", nullable = false)
+	@Column(nullable = false)
 	private BigDecimal productPrice;
 
-	@Column(name = "quantity", nullable = false)
+	@Column(nullable = false)
 	private Integer quantity;
 
 	@ManyToOne
 	@JoinColumn(name = "orderId", insertable = false, updatable = false)
-	private Order order;
+	private Orders order;
 
 }

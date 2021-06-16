@@ -19,6 +19,7 @@ public class ProductService {
 	public List<Product> getAll() {
 		return _productRepo.findAll();
 	}
+
 	public List<Product> findByGearType(GearTypes gearType) {
 		return _productRepo.findByGearType(gearType);
 	}
@@ -26,6 +27,11 @@ public class ProductService {
 	public Page<Product> getPages(int curPage, int pageSize) {
 		Pageable page = PageRequest.of(curPage, pageSize);
 		return _productRepo.findAll(page);
+	}
+
+	public Page<Product> getByTypePages(int curPage, int pageSize, GearTypes type) {
+		Pageable page = PageRequest.of(curPage, pageSize);
+		return _productRepo.findByGearType(page, type);
 	}
 
 	public Product getById(Long id) {

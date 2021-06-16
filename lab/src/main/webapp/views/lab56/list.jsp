@@ -50,7 +50,7 @@ function deleteAllHandle(event){
 	if(confirm("Xác nhận xóa")){
 		const list = [];
 		document.getElementsByName("selectone").forEach(e=>{if(e.checked)list.push(e.value)});
-		document.getElementById("deleteAll").href="/gaminggears/delete?ids="+list;
+		document.getElementById("deleteAll").href="/gaminggears/delete?ids	="+list;
 		return true;
 	}else{
 		return false;
@@ -61,14 +61,16 @@ function deleteAllHandle(event){
 <body>
 	<div class="container">
 		<div style="width: 90%; margin: 0 auto">
-
+			<div style="height: 2rem"></div>
 			<table class="table table-secondary table-striped">
 				<thead>
 					<tr class="table-dark" style="width: 100%">
 						<th colspan="5">Quản lý Gear</th>
 						<th><c:if test="${findByType}">
 								<form>
-									<select type="submit" name="type" onchange="submit()"
+									<input type="hidden" name="curPage" value="1" /> 
+									<select
+										type="submit" name="type" onchange="submit()"
 										class="form-control">
 										<option value="">All</option>
 										<c:forEach items="${gearType }" var="item">
@@ -84,18 +86,17 @@ function deleteAllHandle(event){
 									viewBox="0 0 16 16">
   							<path
 										d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-				</svg> Thêm mới </a> <c:if test="${isPagging }">
-								<a id="deleteAll" class="btn btn-danger" href=""
-									onclick="return deleteAllHandle()"> <svg
-										xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-										fill="currentColor" class="bi bi-dash-circle"
-										viewBox="0 0 16 16">
+				</svg> Thêm mới </a> <%-- 				<c:if test="${isPagging }"> --%> <a
+							id="deleteAll" class="btn btn-danger" href=""
+							onclick="return deleteAllHandle()"> <svg
+									xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-dash-circle"
+									viewBox="0 0 16 16">
   <path
-											d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+										d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
 </svg> Xóa
-								</a>
-							</c:if></th>
+						</a> <%-- 							</c:if> --%></th>
 					</tr>
 					<tr>
 						<th><input type="checkbox" class="form-check-input"
@@ -131,21 +132,21 @@ function deleteAllHandle(event){
 					</c:forEach>
 				</tbody>
 			</table>
-			<c:if test="${isPagging }">
-				<div style="width: 100%; text-align: right">
-					<div class="btn-group" role="group">
-						<a
-							href="/gaminggears/pagination?curPage=${curPage>1?curPage - 1:curPage}"
-							class="btn btn-primary">Trang trước</a>
-						<button class="btn btn-secondary " disabled>Page:
-							${curPage} / ${totalPage}</button>
-						<a
-							href="/gaminggears/pagination?curPage=${curPage < totalPage ? curPage + 1 : totalPage}"
-							class="btn btn-primary">Trang sau</a>
-					</div>
-				</div>
-			</c:if>
 		</div>
+		<c:if test="${isPagging }">
+			<div style="width: 90%; margin: 0 auto; text-align: right">
+				<div class="btn-group" role="group">
+					<a
+						href="/gaminggears/pagination?curPage=${curPage>1?curPage - 1:curPage}&type=${type}"
+						class="btn btn-primary">Trang trước</a>
+					<button class="btn btn-secondary " disabled>Page:
+						${curPage} / ${totalPage}</button>
+					<a
+						href="/gaminggears/pagination?curPage=${curPage < totalPage ? curPage + 1 : totalPage}&type=${type}"
+						class="btn btn-primary">Trang sau</a>
+				</div>
+			</div>
+		</c:if>
 	</div>
 </body>
 </html>

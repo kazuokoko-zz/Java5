@@ -23,4 +23,6 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
 	List<Product> findByNameLike(@Param("name") String name);
 
 	Page<Product> findAll(Pageable page);
+	
+	Page<Product> findByGearType(Pageable page, GearTypes gearType);
 }

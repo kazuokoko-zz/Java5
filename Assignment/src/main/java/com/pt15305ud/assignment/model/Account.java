@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -21,22 +23,28 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "username", nullable = false, unique = true, length = 50)
-	private String uesrName;
+	@Column(length = 50, unique = true, nullable = false)
+	private String userName;
+//
+//	@Column(name = "password", nullable = false, length = 50)
+//	private String passWord;
 
-	@Column(name = "password", nullable = false, length = 50)
-	private String passWord;
+	@Column(length = 128, nullable = false)
+	private String encrytedPassword;
 
-	@Column(name = "phone", unique = true, length = 15)
+	@Column(length = 15)
 	private String phone;
 
-	@Column(name = "email", unique = true, length = 50)
+	@Column(length = 50)
 	private String email;
 
-	@Column(name = "actived", nullable = false)
+	@Column(nullable = false)
 	private boolean actived;
-	
+//
+//	@OneToMany(mappedBy = "account")
+//	List<Order> orders;
 
-	@OneToMany(mappedBy = "account")
-	private List<Order> orders;
+	@ToString.Exclude
+	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+	List<UserRole> userRoles;
 }

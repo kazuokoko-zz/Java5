@@ -34,11 +34,11 @@ public class ViewController {
 		List<Product> list = _productSer.getAll();
 		model.addAttribute("gamingGears", list);
 
-		_productSer.setPageStat(model, 1, 1, false);
-//		
-//		model.addAttribute("isPagging", false);
-//		model.addAttribute("curPage", 1);
-//		model.addAttribute("totalPage", 1);
+//		_productSer.setPageStat(model, 1, 1, false);
+
+		model.addAttribute("isPagging", false);
+		model.addAttribute("curPage", 1);
+		model.addAttribute("totalPage", 1);
 		return "lab56/list";
 	}
 
@@ -56,31 +56,54 @@ public class ViewController {
 		model.addAttribute("type", type);
 		model.addAttribute("gamingGears", page);
 
-		_productSer.setPageStat(model, 1, 1, false);
+//		_productSer.setPageStat(model, 1, 1, false);
 //		
-//		model.addAttribute("isPagging", false);
-//		model.addAttribute("curPage", 1);
-//		model.addAttribute("totalPage", 1);
+		model.addAttribute("isPagging", false);
+		model.addAttribute("curPage", 1);
+		model.addAttribute("totalPage", 1);
 		return "lab56/list";
 	}
 
 	@GetMapping("/pagination")
-	public String getListPage(Model model, @RequestParam(defaultValue = "1") int curPage) {
+	public String getListPage(Model model, @RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(required = false) GearTypes type) {
+
 		model.addAttribute("gearType", GearTypes.values());
+
+		model.addAttribute("findByType", true);
+
 		if (_productSer.getAll().isEmpty())
 			return "redirect:/gaminggears";
-		if (curPage < 1)
-			curPage = 1;
-		Page<Product> page = _productSer.getPages(curPage - 1, PAGE_SIZE);
+		Page<Product> page;
+		if (type != null) {
+			if (curPage < 1)
+				curPage = 1;
+			page = _productSer.getByTypePages(curPage - 1, PAGE_SIZE, type);
 
-		if (page.getTotalPages() < curPage)
-			curPage = page.getTotalPages();
-		page = _productSer.getPages(curPage - 1, PAGE_SIZE);
+			if (page.getTotalPages() < curPage)
+				curPage = page.getTotalPages();
+			if (curPage > 0)
+				page = _productSer.getByTypePages(curPage - 1, PAGE_SIZE, type);
+		} else {
+			if (curPage < 1)
+				curPage = 1;
+			page = _productSer.getPages(curPage - 1, PAGE_SIZE);
+
+			if (page.getTotalPages() < curPage)
+				curPage = page.getTotalPages();
+			if (curPage > 0)
+				page = _productSer.getPages(curPage - 1, PAGE_SIZE);
+
+		}
+
 //			page = _productSer.getPages(page.getTotalPages() - 1, PAGE_SIZE);
-		_productSer.setPageStat(model, curPage, page.getTotalPages(), true);
-//		model.addAttribute("isPagging", true);
-//		model.addAttribute("curPage", curPage);
-//		model.addAttribute("totalPage", page.getTotalPages());
+//		_productSer.setPageStat(model, curPage, page.getTotalPages(), true);
+		model.addAttribute("isPagging", true);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("totalPage", page.getTotalPages());
+
+		model.addAttribute("type", type);
+
 		model.addAttribute("gamingGears", page.getContent());
 		return "lab56/list";
 	}

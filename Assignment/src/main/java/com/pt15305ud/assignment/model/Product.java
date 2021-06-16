@@ -25,21 +25,27 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name", nullable = false, columnDefinition = "nvarchar(150)")
+	@Column(nullable = false, columnDefinition = "nvarchar(150)")
 	private String name;
 
-	@Column(name = "gearstype", nullable = false)
+	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private GearTypes gearTypes;
 
-	@Column(name = "createdDate", nullable = false)
+	@Column(nullable = false)
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date createdDate;
 
-	@Column(name = "quantity", nullable = false)
+	@Column(nullable = false)
 	private Integer quantity;
 
-	@Column(name = "price", nullable = false)
+	@Column(nullable = false)
 	private BigDecimal price;
+
+	@Column(nullable = false)
+	private BigDecimal discount;
+
+	@Column(nullable = false)
+	private Boolean active;
 
 }

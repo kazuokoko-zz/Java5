@@ -24,32 +24,32 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "orderId")
+	@Column(nullable = false)
 	private Long orderId;
 
-	@Column(name = "paymentType", nullable = false)
+	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private PaymentTypes paymentType;
 
-	@Column(name = "paymentCode", length = 25)
+	@Column(length = 25)
 	private String paymentCode;
 
-	@Column(name = "payerAccount", length = 20)
+	@Column(length = 20)
 	private String payerAccount;
 
-	@Column(name = "reciever", columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(50)")
 	private String reciver;
 
-	@Column(name = "recieverAccount", length = 20)
+	@Column(length = 20)
 	private String reciverAccount;
 
-	@Column(name = "price", nullable = false)
+	@Column(nullable = false)
 	private BigDecimal price;
 
-	@Column(name = "description", length = 255)
+	@Column(length = 255)
 	private String description;
 
-	@Column(name = "securityCode", length = 10)
+	@Column(length = 10)
 	private String securityCode;
 
 	@Column(name = "status", nullable = false)
@@ -57,6 +57,6 @@ public class Payment {
 
 	@OneToOne
 	@JoinColumn(name = "orderId", insertable = false, updatable = false, referencedColumnName = "id")
-	private Order order;
+	private Orders order;
 
 }
