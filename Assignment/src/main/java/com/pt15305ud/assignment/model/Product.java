@@ -12,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+//import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -33,7 +35,8 @@ public class Product {
 	private GearTypes gearTypes;
 
 	@Column(nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy")
+//	@JsonFormat()
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdDate;
 
 	@Column(nullable = false)

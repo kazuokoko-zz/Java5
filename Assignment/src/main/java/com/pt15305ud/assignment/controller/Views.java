@@ -2,6 +2,8 @@ package com.pt15305ud.assignment.controller;
 
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class Views {
 	@Autowired
 	AccountService _accountSer;
 
-	private final int limit = 20;
+	private final int limit = 12;
 
 	@RequestMapping(value = { "/home", "/new", "/hot", "/discount" })
 	public String home(Model model, @RequestParam(defaultValue = "1") Integer p,
@@ -144,7 +146,19 @@ public class Views {
 
 		CartUtils.removeCartInSession(req);
 		model.addAttribute("order", orders);
+		model.addAttribute("details", orders.getOrderDetails());
 		model.addAttribute("account", _accountSer.getById(orders.getUserId()));
+
+		BigDecimal sumPrice = new BigDecimal(0);
+
+		for (OrderDetails detail : orders.getOrderDetails()) {
+			sumPrice = sumPrice.add(detail.getProductPrice().multiply(new BigDecimal(detail.getQuantity())));
+		}
+
+		model.addAttribute("sumPrice", sumPrice);
+		model.addAttribute("dateCreate", new SimpleDateFormat("dd-MM-yyyy hh:mm aa")
+				.format(java.util.Date.from(orders.getDateCreated().atZone(ZoneId.systemDefault()).toInstant())));
+
 		return "buy";
 	}
 

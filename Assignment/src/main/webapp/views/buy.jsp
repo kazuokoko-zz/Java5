@@ -19,14 +19,14 @@
 
 
 	<div style="width: 80%; min-width: 768px; margin: 0 auto">
-		<fmt:formatNumber pattern="HD################" value="${order.id }"
-			var="orderId"></fmt:formatNumber>
+		<fmt:parseNumber pattern="################" value="${order.id }"
+			var="orderId"></fmt:parseNumber>
 		<div class="row g-2">
 			<div class="col-sm-5">
 				<label class="form-label" for="mhd">Mã hóa đơn</label>
 			</div>
 			<div class="col-auto">
-				<label class="form-control-plaintext" for="mhd">${orderId }</label>
+				<label class="form-control-plaintext" for="mhd">HD${orderId }</label>
 			</div>
 		</div>
 		<div class="row g-2">
@@ -37,35 +37,37 @@
 				<label class="form-control-plaintext" for="mhd">${account.userName }</label>
 			</div>
 		</div>
-		<fmt:formatNumber pattern="dd-MM-yyyy hh:mm aa"
-			value="${order.dateCreated }" var="dateCreated"></fmt:formatNumber>
+<%-- 		<fmt:parseDate pattern="dd-MM-yyyy hh:mm aa" --%>
+<%-- 			value="${order.dateCreated }" var="dateCreated"></fmt:parseDate> --%>
 		<div class="row g-2">
 			<div class="col-sm-5">
 				<label class="form-label" for="mhd">Ngày mua</label>
 			</div>
 			<div class="col-auto">
-				<label class="form-control-plaintext" for="mhd">${dateCreated }</label>
+				<label class="form-control-plaintext" for="mhd">${dateCreate }</label>
 			</div>
 		</div>
 		<table class="table table-striped table-info">
 			<thead>
 				<tr>
-					<th>Tên mặt hàng</th>
+					<th>Mã mặt hàng</th>
 					<th>Số lượng</th>
 					<th>Giá tiền</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="order.orderDetails">
+				<c:forEach items="${order.orderDetails }"  var="prd">
 					<tr>
-						<td>Tên mặt hàng</td>
-						<td>Số lượng</td>
-						<td>Giá tiền</td>
+						<td>${prd.productId }</td>
+						<td>${prd.quantity }</td>
+						<td>${prd.productPrice }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-
+		<div class="d-flex justify-content-between">
+			<span>Tổng tiền:</span><span>${sumPrice }</span>
+		</div>
 	</div>
 
 

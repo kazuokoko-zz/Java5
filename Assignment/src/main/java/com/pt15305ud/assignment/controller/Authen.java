@@ -61,7 +61,7 @@ public class Authen {
 			model.addAttribute("userInfo", userInfo);
 
 			String message = "<h1>Có lỗi xảy ra</h1>\n" + principal.getName() //
-					+ "<br> bạn không có truy cập vào trang này!";
+					+ "<br> bạn không có quyền truy cập vào trang này!";
 			model.addAttribute("message", message);
 
 		}

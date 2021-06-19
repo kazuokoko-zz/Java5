@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +33,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <link rel="stylesheet" href="/css/admin.css" />
+<script src="/js/table-select.js" type="text/javascript"></script>
 </head>
 <body>
 	<!-- NAV -->
@@ -79,7 +81,58 @@
 	</nav>
 
 
-	<div class="container"></div>
+	<div class="bg-light"
+		style="width: 1600px; min-height: 600px; box-shadow: 0 0 3px 3px #00000011; margin: 5rem auto; border-radius: 10px; position: relative;">
+		<div
+			style="width: 90%; margin: 3rem auto; position: absolute; left: 5%">
+
+			<form:form method="POST" action="/admin/product/insert"
+				modelAttribute="gear">
+				<div class="form-group row">
+					<form:label path="id" class="col-sm-2 form-label">Mã sản phẩm</form:label>
+					<form:input path="id" class="col form-control-plaintext" />
+				</div>
+				<div class="form-group row">
+					<form:label path="name" class="col-sm-2 form-label">Tên sản phẩm</form:label>
+					<form:input path="name" class="col form-control" />
+				</div>
+
+				<div class="form-group row">
+					<form:label path="gearTypes" class="col-sm-2 form-label">loại</form:label>
+					<form:select path="gearTypes" items="${gearTypes}"
+						value="${gear.gearTypes }" class="col form-control" />
+				</div>
+				<div class="form-group row">
+					<form:label path="createdDate" class="col-sm-2 form-label">Ngày tạo</form:label>
+					<form:input path="createdDate" type="date" class="col form-control" />
+				</div>
+				<div class="form-group row">
+					<form:label path="quantity" class="col-sm-2 form-label">Số lượng</form:label>
+					<form:input path="quantity" type="number" class="col form-control" />
+				</div>
+				<div class="form-group row">
+					<form:label path="price" class="col-sm-2 form-label">Giá cả</form:label>
+					<form:input path="price" type="number" class="col form-control" />
+				</div>
+				<div class="form-group row">
+					<form:label path="discount" class="col-sm-2 form-label">Giảm giá</form:label>
+					<form:input path="discount" type="number" class="col form-control" />
+				</div>
+				<div class="form-group row">
+					<form:label path="active" class="col-sm-2 form-label">Đang mở bán</form:label>
+					<div class="col form-check">
+						<form:checkbox path="active" class="form-check-input"></form:checkbox>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-2 form-label"></div>
+					<input type="submit" value="Lưu lại" class="btn btn-primary" /> <a
+						href="/admin/product/new/" class="btn btn-success ml-2">Thêm
+						sản phẩm</a>
+				</div>
+			</form:form>
+		</div>
+	</div>
 
 
 </body>

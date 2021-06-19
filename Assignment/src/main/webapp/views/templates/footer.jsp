@@ -7,9 +7,10 @@
 </head>
 <body>
 
-	<div class="w-100 fixed-bottom bg-dark text-center" style="height: 40px">
-	<span style="color: white; line-height: 40px" >
-	MA VĂN HÙNG - PH12447 © 2021 - 2021</span>
+	<div class="w-100  bg-dark text-center"
+		style="height: 40px; margin-top: 2rem">
+		<span style="color: white; line-height: 40px"> MA VĂN HÙNG -
+			PH12447 © 2021 - 2021</span>
 	</div>
 	<!-- JavaScript Bundle with Popper -->
 	<script

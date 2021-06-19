@@ -16,7 +16,7 @@
 	 let el = document.getElementById(id);
 	 let quantity = el.value;
 	 let ok = true;
-	 if(quantity == 0){
+	 if(quantity <= 0){
 		 ok = confirm("Xác nhận xóa sản phẩm?");
 	 }
 	if(ok){

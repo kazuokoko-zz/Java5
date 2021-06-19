@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,8 @@ public class AccountService {
 	@Autowired
 	AccountRepository _accountRepo;
 
-	public Page<Account> getPage(Pageable page) {
+	public Page<Account> getPage(int curPage, int limit) {
+		Pageable page = PageRequest.of(curPage, limit);
 		return _accountRepo.findAll(page);
 	}
 
@@ -28,6 +30,11 @@ public class AccountService {
 			return null;
 		}
 
+	}
+
+	public Page<Account> findAllByName(int curPage, int limit, String name) {
+		Pageable page = PageRequest.of(curPage, limit);
+		return _accountRepo.findByUserNameLike(page, name);
 	}
 
 	public Account getById(Long id) {
